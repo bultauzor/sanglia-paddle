@@ -3,6 +3,7 @@ import process from "node:process";
 import { createDB } from "./db";
 import { createTournament } from "./tournament";
 import cors from "cors";
+import { getTournamentPools } from "./tournament.ts";
 
 // Create a new express application instance
 const app = express();
@@ -25,6 +26,7 @@ app.get("/ping", (_req: Request, res: Response) => {
 });
 
 app.post("/tournaments", createTournament);
+app.get("/tournaments/:id/pools", getTournamentPools);
 
 createDB(url).then(app.listen(port, () => {
   console.log(`The server is running at http://localhost:${port}`);
