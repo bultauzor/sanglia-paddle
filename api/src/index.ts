@@ -12,7 +12,11 @@ const port = process.env.PORT || 8080;
 
 const url = process.env.REDIS_URL;
 
-app.use(cors());
+app.use(cors(
+  {
+    origin: "*",
+  },
+));
 app.use(express.json());
 
 // Define the root path with a greeting message
