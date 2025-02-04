@@ -3,9 +3,10 @@ name: Deploy API pipeline
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - api/**
+  workflow_dispatch:
 
 jobs:
   deploy_api:

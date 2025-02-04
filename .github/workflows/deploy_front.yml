@@ -3,9 +3,10 @@ name: Deploy front pipeline
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - front/**
+  workflow_dispatch:
 
 jobs:
   deploy_front:
