@@ -12,7 +12,6 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 const url = process.env.REDIS_URL;
-const token = process.env.REDIS_TOKEN;
 
 
 app.use(express.json());
@@ -26,7 +25,7 @@ app.get("/ping", (_req: Request, res: Response) => {
 
 app.post("/tournaments", createTournament);
 
-createDB(url, token).then(app.listen(port, () => {
+createDB(url).then(app.listen(port, () => {
   console.log(`The server is running at http://localhost:${port}`);
 }));
 
