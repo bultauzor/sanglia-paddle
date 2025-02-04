@@ -43,6 +43,8 @@ export default defineComponent({
         },
         body: JSON.stringify(tournamentData),
       })
+
+      alert("Lien du tournois : https://sanglia-paddle.cleverapps.io/tournament/"+tournamentId.body);
     };
 
     return { tournamentName, playerListRef, startTournament };
