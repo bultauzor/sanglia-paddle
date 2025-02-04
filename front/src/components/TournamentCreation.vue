@@ -1,12 +1,21 @@
 <script lang="ts">
 import {defineComponent, ref} from "vue";
-import PlayerList from "./PlayerList.vue";
+import PlayerList from './PlayerList.vue';
+
+interface Player {
+  id: number;
+  name: string;
+}
+
+interface PlayerListComponent {
+  players: Player[];
+}
 
 export default defineComponent({
   components: {PlayerList},
   setup() {
     const tournamentName = ref('');
-    const playerListRef = ref(null);
+    const playerListRef = ref<PlayerListComponent | null>(null);
 
     const startTournament = () => {
       const players = playerListRef.value?.players || [];
@@ -44,9 +53,6 @@ export default defineComponent({
 </template>
 
 <style scoped>
-h1 {
-  color: #004643;
-}
 h2 {
   margin-top: 50px;
 }
