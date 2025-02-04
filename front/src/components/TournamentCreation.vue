@@ -17,7 +17,7 @@ export default defineComponent({
     const tournamentName = ref('');
     const playerListRef = ref<PlayerListComponent | null>(null);
 
-    const startTournament = () => {
+    const startTournament = async () => {
       const players = playerListRef.value?.players || [];
 
       if (!tournamentName.value.trim()) {
@@ -32,10 +32,17 @@ export default defineComponent({
 
       const tournamentData = {
         name: tournamentName.value,
-        participants: players
+        players: players
       };
 
       console.log("Envoi des données à l'API:", tournamentData);
+      const tournamentId = await fetch('https://app-b11b7cae-b031-42ba-9cb8-cd175360c6ae.cleverapps.io/tournaments', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json;charset=UTF-8',
+        },
+        body: JSON.stringify(tournamentData),
+      })
     };
 
     return { tournamentName, playerListRef, startTournament };
