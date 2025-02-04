@@ -69,7 +69,9 @@ function make_pools(players: Player[], offsets: number[]): Player[][] {
 export async function getTournamentPools(req: Request, res: Response) {
   const id = req.params.id;
 
-  const players: Player[] = JSON.parse(db.get("tournament:" + id + ":players"));
+  const players: Player[] = JSON.parse(
+    await db.get("tournament:" + id + ":players"),
+  );
   const offsets = pool_lengths(players.length);
 
   res.json(make_pools(players, offsets));
